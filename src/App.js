@@ -24,47 +24,33 @@ class App extends React.Component {
     })
   }
 
-  handleEquals = () => {
+  handleEquals = value => () => {
     const { input } = this.state; // const input = this.state.input
-    console.log(input)
-    if (input.toString().includes('-')) {
-      input.split("-").map(s => parseInt(s))
+    if (input.includes("-")) {
+      const ints = input.split("-").map(s => parseInt(s))
       this.setState({
-        output: input[0]-input[1],
+        output: ints[0]-ints[1],  
         input: ""
       });
-    }
-      /*
-      for(s in input.split("-")) {
-        s = parseInt(s) (BASICALLY)
-      }
-      */
-      
-    else if (input.search("+") !== -1){
-      input.split("+").map(s => parseInt(s))
+    } else if (input.includes("+")){
+      const ints = input.split("+").map(s => parseInt(s))
       this.setState({
-        output: input[0]+input[1],  
+        output: ints[0]+ints[1],  
         input: ""
       });
-    }
-      
-    else if (input.search("/") !== -1){
-      input.split("/").map(s => parseInt(s))
+    } else if (input.includes("/")){
+      const ints = input.split("/").map(s => parseInt(s))
       this.setState({
-        output: input[0]/input[1],
+        output: ints[0]/ints[1],
         input: ""
       });
-    }
-      
-    else if (input.search("*") !== -1){
-      input.split("*").map(s => parseInt(s))
+    } else if (input.includes("*")){
+      const ints = input.split("*").map(s => parseInt(s))
       this.setState({
-        output: input[0]*input[1],
+        output: ints[0]*ints[1],
         input: ""
       });
-    }
-      
-    else {
+    } else {
       this.setState({
         output: input,
         input: ""
@@ -91,7 +77,7 @@ class App extends React.Component {
           <button onClick={this.handleButton("*")}>*</button>
           <button onClick={this.handleButton("-")}>-</button>
           <button onClick={this.handleButton("+")}>+</button>
-          <button onClick={this.handleEquals}>=</button>
+          <button onClick={this.handleEquals("huh")}>=</button>
           <button onClick={this.handleAC}>AC</button>
           <input onChange={this.handleInput('output')} value={this.state.output} type="text"></input>
         </div>
