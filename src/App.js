@@ -6,7 +6,7 @@ class App extends React.Component {
 
   state = {
     input: '',
-    output: '',
+    output: '0',
   }
 
   handleInput = fieldName => e => {
@@ -20,7 +20,7 @@ class App extends React.Component {
   handleAC = () => {
     this.setState({
       input: "",
-      output: ""
+      output: "0"
     })
   }
 
@@ -35,11 +35,70 @@ class App extends React.Component {
   }
 
   handleEquals = value => () => {
+    let first = [];
+    let second = [];
+    
     const { input } = this.state; // const input = this.state.input
-    if (input.includes("-")) {
+    if (input[0] === "+") {
+      const ints = input.split("+").map(s => parseInt(s));
+      const ints2 = parseInt(this.state.output)
+      if (this.state.output === ""){
+        this.setState({
+          output: 0 + ints[1],
+          input: ""
+        })
+      }else {
+        this.setState({
+          output: ints[1] + ints2,
+          input: ""
+        })
+      }
+    }else if (input[0] === "-") {
+      const ints = input.split("-").map(s => parseInt(s));
+      const ints2 = parseInt(this.state.output)
+      if (this.state.output === ""){
+        this.setState({
+          output: 0 - ints[1],
+          input: ""
+        })
+      }else {
+        this.setState({
+          output: ints2 - ints[1],
+          input: ""
+        })
+      }
+    }else if (input[0] === "*") {
+      const ints = input.split("*").map(s => parseInt(s));
+      const ints2 = parseInt(this.state.output)
+      if (this.state.output === ""){
+        this.setState({
+          output: 0 * ints[1],
+          input: ""
+        })
+      }else {
+        this.setState({
+          output: ints2 * ints[1],
+          input: ""
+        })
+      }
+    }else if (input[0] === "/") {
+      const ints = input.split("/").map(s => parseInt(s));
+      const ints2 = parseInt(this.state.output)
+      if (this.state.output === ""){
+        this.setState({
+          output: 0 / ints[1],
+          input: ""
+        })
+      }else {
+        this.setState({
+          output: ints2 / ints[1],
+          input: ""
+        })
+      }
+    }else if (input.includes("-")) {
       const ints = input.split("-").map(s => parseInt(s))
       this.setState({
-        output: ints[0]-ints[1],  
+        output: ints[0] - ints[1],  
         input: ""
       });
     } else if (input.includes("+")){
@@ -56,7 +115,7 @@ class App extends React.Component {
       });
     } else if (input.includes("*")){
       const ints = input.split("*").map(s => parseInt(s))
-      
+
       this.setState({
         output: ints[0]*ints[1],
         input: ""
