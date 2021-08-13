@@ -7,6 +7,7 @@ class App extends React.Component {
   state = {
     input: '',
     output: '0',
+    disable: false,
   }
 
   handleInput = fieldName => e => {
@@ -73,11 +74,48 @@ class App extends React.Component {
     })
     }
   }
+
+  handleKeys = event => {
+    if(event.key === 'Enter') {
+      this.handleEquals()()
+    }else if (event.key === '1') {
+      this.handleButton("1")()
+    }else if (event.key === '2') {
+      this.handleButton("2")()
+    }else if (event.key === '3') {
+      this.handleButton("3")()
+    }else if (event.key === '3') {
+      this.handleButton("3")()
+    }else if (event.key === '4') {
+      this.handleButton("4")()
+    }else if (event.key === '5') {
+      this.handleButton("5")()
+    }else if (event.key === '6') {
+      this.handleButton("6")()
+    }else if (event.key === '7') {
+      this.handleButton("7")()
+    }else if (event.key === '8') {
+      this.handleButton("8")()
+    }else if (event.key === '9') {
+      this.handleButton("9")()
+    }else if (event.key === '/') {
+      this.handleButton("/")()
+    }else if (event.key === '*') {
+      this.handleButton("*")()
+    }else if (event.key === '-') {
+      this.handleButton("-")()
+    }else if (event.key === '+') {
+      this.handleButton("+")()
+    }else if (event.key === '=') {
+      this.handleButton("=")()
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <div className="Calculator">
-          <input onChange={this.handleInput('input')} value={this.state.input} type="text"></input>
+          <input onKeyPress={this.handleKeys} value={this.state.input} type="text" disabled={this.state.disable}></input>
           <br/>
           <button className="button" onClick={this.handleButton("7")}>7</button>
           <button className="button" onClick={this.handleButton("8")}>8</button>
@@ -102,7 +140,7 @@ class App extends React.Component {
           <button className="button" onClick={this.handleAns}>Ans</button>
 
           <br/>
-          <input onChange={this.handleInput('output')} value={this.state.output} type="text"></input>
+          <input onChange={this.handleInput('output')} value={this.state.output} type="text" disabled={this.state.disable}></input>
         </div>
       </div>
     );
