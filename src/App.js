@@ -106,8 +106,6 @@ class App extends React.Component {
       this.handleButton("-")()
     }else if (event.key === '+') {
       this.handleButton("+")()
-    }else if (event.key === '=') {
-      this.handleButton("=")()
     }
   }
 
